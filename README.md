@@ -14,6 +14,8 @@ This is a minimalistic portfolio site that showcases my work and interests. It i
 
 ## Setup
 
+### Simple setup using npx http-server
+
 If you want to create your own minimal portfolio site, feel free to use this code as a starting point. Here’s a basic guide on how to set it up:
 
 1. **Clone the Repository**:
@@ -34,6 +36,10 @@ If you want to create your own minimal portfolio site, feel free to use this cod
 4. **Deploy**:
    Deploy your site to your preferred hosting service. 
 
+### Deploy using kubernetes
+
+If you have a kubernetes setup, you can simply clone this repo and run `kubectl apply -f install.yml` with appropriate kubernetes context to deploy the website.
+
 ## License
 
 Feel free to use and modify this code for your own projects. 
@@ -42,7 +48,7 @@ Feel free to use and modify this code for your own projects.
 
 If you have any questions or need assistance, don’t hesitate to reach out to me.
 
-- **Email**: shivtyagi3015@gmail.com
+- **Email**: shivtyagi3015@gmail.coBm
 - **LinkedIn**: [linkedin.com/in/shiv-tyagi](https://linkedin.com/in/shiv-tyagi)
 - **GitHub**: [github.com/shiv-tyagi](https://github.com/shiv-tyagi)
 
