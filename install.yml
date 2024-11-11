@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-portfolio
+  template:
+    metadata:
+      labels:
+        app: web-portfolio
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html-content
+          mountPath: /usr/share/nginx/html
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "50Mi"
+          limits:
+            cpu: "50m"
+            memory: "50Mi"
+      initContainers:
+      - name: git-clone
+        image: alpine/git
+        args:
+          - clone
+          - --depth=1
+          - https://github.com/shiv-tyagi/shiv-tyagi.github.io.git
+          - /tmp/html
+        volumeMounts:
+        - name: html-content
+          mountPath: /tmp/html
+      volumes:
+      - name: html-content
+        emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-portfolio-service
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30001
+  selector:
+    app: web-portfolio
