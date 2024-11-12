@@ -12,6 +12,16 @@ spec:
       labels:
         app: web-portfolio
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - microboo
       containers:
       - name: nginx
         image: nginx:latest
