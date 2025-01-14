@@ -24,7 +24,7 @@ spec:
                       - microboo
       containers:
       - name: nginx
-        image: nginx:latest
+        image: nginx:1.27.3-alpine
         ports:
         - containerPort: 80
         volumeMounts:
@@ -39,7 +39,7 @@ spec:
             memory: "50Mi"
       initContainers:
       - name: git-clone
-        image: alpine/git
+        image: alpine/git:v2.47.1
         args:
           - clone
           - --depth=1
