@@ -74,6 +74,7 @@ spec:
     - name: eg
   hostnames:
     - "shiv.bigliboo.dev"
+    - "www.bigliboo.dev"
   rules:
     - backendRefs:
         - group: ""
