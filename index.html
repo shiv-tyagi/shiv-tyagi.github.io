@@ -1,119 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shiv Tyagi - Portfolio</title>
+    <title>Shiv Tyagi - Terminal</title>
     <style>
+        * { box-sizing: border-box; }
+
         body {
-            background-color: #000;
-            color: #fff;
+            background-color: #0a0a0a;
+            color: #00ff00;
             font-family: "Courier New", Courier, monospace;
+            padding: 2rem;
+            margin: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
         .container {
-            border: 1px solid #fff;
-            padding: 20px;
-            max-width: 600px;
-            width: 90%;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
+            max-width: 780px;
+            width: 100%;
         }
 
-        h1 {
-            margin-top: 0;
+        .ascii-art {
+            white-space: pre;
+            font-size: 13px;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #00ff00;
         }
 
-        .contact-info {
-            margin-top: 20px;
+        .motd {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 0.2rem 2rem;
+            border-left: 3px solid #00ff00;
+            padding: 0.8rem 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.92em;
+        }
+
+        .motd-key  { color: #888; }
+        .motd-val  { color: #00ff00; }
+
+        .motd-divider {
+            grid-column: 1 / -1;
+            border: none;
+            border-top: 1px solid #003300;
+            margin: 0.4rem 0;
+        }
+
+        .prompt-line {
+            display: flex;
+            align-items: baseline;
+            margin: 0.3rem 0;
+        }
+
+        .prompt-prefix {
+            color: #00ff00;
+            font-weight: bold;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .prompt-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #00ff00;
+            font-family: inherit;
+            font-size: inherit;
+            caret-color: #00ff00;
+            flex: 1;
+            width: 100%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin: 0.3rem 0;
+        }
+
+        ul li::before {
+            content: "> ";
+            color: #00ff00;
+        }
+
+        a { color: #00ff00; text-decoration: none; }
+        a:hover { color: #0a0a0a; background-color: #00ff00; }
+
+        .output {
+            padding-left: 4px;
+            margin: 0.2rem 0 0.6rem 0;
             line-height: 1.8;
         }
 
-        a {
-            color: #00ff00;
-            text-decoration: none;
+        .bot-message {
+            margin-top: 4rem;
+            font-size: 0.85em;
+            color: #005500;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .anim-element {
+            opacity: 0;
+            animation: revealLine 0.08s forwards;
         }
 
-        .resume-link {
-            margin-top: 20px;
-            font-style: italic;
-        }
+        @keyframes revealLine { to { opacity: 1; } }
 
-        .line {
-            display: none;
-        }
-
-        .typing {
-            white-space: pre-wrap;
-            overflow: hidden;
-            border-right: .15em solid #00ff00;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #00ff00; }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
         }
     </style>
 </head>
-
 <body>
-    <div class="container" id="content">
-        <!-- Content will be added here by JavaScript -->
+    <div class="container" id="boot">
+
+        <div class="ascii-art anim-element">
+ __    __  __  __        ______                                       ______   __        __            
+/  |  /  |/  |/  |      /      |                                     /      \ /  |      /  |           
+$$ |  $$ |$$/ $$ |      $$$$$$/         ______   _____  ____        /$$$$$$  |$$ |____  $$/  __     __ 
+$$ |__$$ |/  |$$ |        $$ |         /      \ /     \/    \       $$ \__$$/ $$      \ /  |/  \   /  |
+$$    $$ |$$ |$$ |        $$ |         $$$$$$  |$$$$$$ $$$$  |      $$      \ $$$$$$$  |$$ |$$  \ /$$/ 
+$$$$$$$$ |$$ |$$/         $$ |         /    $$ |$$ | $$ | $$ |       $$$$$$  |$$ |  $$ |$$ | $$  /$$/  
+$$ |  $$ |$$ | __        _$$ |_       /$$$$$$$ |$$ | $$ | $$ |      /  \__$$ |$$ |  $$ |$$ |  $$ $$/   
+$$ |  $$ |$$ |/  |      / $$   |      $$    $$ |$$ | $$ | $$ |      $$    $$/ $$ |  $$ |$$ |   $$$/    
+$$/   $$/ $$/ $$/       $$$$$$/        $$$$$$$/ $$/  $$/  $$/        $$$$$$/  $$/   $$/ $$/     $/                                                                                                                                                                                            
+
+        </div>
+
+        <div class="motd anim-element">
+            <span class="motd-key">Location</span>
+            <span class="motd-val">Bangalore, India</span>
+
+            <span class="motd-key">Day job</span>
+            <span class="motd-val">Engineering @ AMD</span>
+
+            <hr class="motd-divider">
+
+            <span class="motd-key">Email</span>
+            <span class="motd-val"><a href="mailto:shivtyagi3015@gmail.com">shivtyagi3015@gmail.com</a></span>
+
+            <span class="motd-key">LinkedIn</span>
+            <span class="motd-val"><a href="https://linkedin.com/in/shiv-tyagi" target="_blank">linkedin.com/in/shiv-tyagi</a></span>
+
+            <span class="motd-key">GitHub</span>
+            <span class="motd-val"><a href="https://github.com/shiv-tyagi" target="_blank">github.com/shiv-tyagi</a></span>
+
+            <span class="motd-key">Server IP</span>
+            <span class="motd-val">&lt;you really think I'd put it here?&gt;</span>
+
+            <hr class="motd-divider">
+
+            <span class="motd-key">Uptime</span>
+            <span class="motd-val" id="uptime">calculating...</span>
+
+            <span class="motd-key">Packages</span>
+            <span class="motd-val">&#8734; (mostly unread man pages)</span>
+
+            <hr class="motd-divider">
+
+            <span class="motd-key">Available commands</span>
+            <span class="motd-val">Type "help" to see a list of available commands.</span>
+        </div>
+
+        <div class="anim-element">
+            <div class="prompt-line">
+                <span class="prompt-prefix">shiv@bigliboo:~$&nbsp;</span>
+                <span>./see_what_I_like</span>
+            </div>
+            <div class="output">
+                Things I love:
+                <ul>
+                    <li>Open source</li>
+                    <li>Unmanned systems</li>
+                    <li>Science</li>
+                    <li>Operating systems</li>
+                    <li>Cloud tech</li>
+                    <li>Engineering</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+            <div id="history"></div>
+            <div class="prompt-line">
+                <span class="prompt-prefix">shiv@bigliboo:~$&nbsp;</span>
+                <input class="prompt-input" id="cmd-input" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="type a command...">
+            </div>
+        </div>
+
     </div>
 
     <script>
-        const contentArray = [
-            '<h1>Hi! I am Shiv 👨🏻‍💻</h1>',
-            '<p><b>Engineer | Lifelong Learner | Open-Source Enthusiast</b></p>',
-            '<p>',
-            '>> Obsessed with cloud tech, scalable systems and everything in between.<br><br>',
-            '>> Currently building AI infra software at AMD.<br><br>',
-            '>> On the side, I tinker with open-source projects and geek out over avionics and self-flying aircraft.<br><br>',
-            '>> I have a deep love for hardcore engineering concepts and enjoy exploring how things work under the hood.<br><br>',
-            '</p>',
-            '<p>Living life one shell command at a time.</p>',
-            '<div class="contact-info">',
-            '✉️ <a href="mailto:shivtyagi3015@gmail.com">shivtyagi3015@gmail.com</a><br>',
-            '🌐 <a href="https://linkedin.com/in/shiv-tyagi" target="_blank">linkedin.com/in/shiv-tyagi</a><br>',
-            '💻 <a href="https://github.com/shiv-tyagi" target="_blank">github.com/shiv-tyagi</a><br>',
-            '</div>',
-            '<br><p>---</p>',
-            '<p>This is my home-lab setup. Contact me for access.</p>',
-            '<p>And to all the bots lurking around here... I see you. Go away. 👀</p>'
-        ];
+        const startTime = Date.now();
+        setInterval(() => {
+            const s = Math.floor((Date.now() - startTime) / 1000);
+            const m = Math.floor(s / 60), sec = s % 60;
+            document.getElementById('uptime').textContent =
+                m + 'm ' + sec + 's  (since you opened this tab)';
+        }, 1000);
 
-        const speed = 50; // Time in milliseconds for each element to appear
+        document.querySelectorAll('.anim-element').forEach((el, i) => {
+            el.style.animationDelay = (i * 0.12) + 's';
+        });
 
-        function addContentWithDelay(index) {
-            if (index >= contentArray.length) return;
+        const commands = {
+            help() {
+                return 'Available commands: ./see_what_I_like, whoami, ls, cat, echo, sudo, poweroff, reboot, uname, pwd, clear, help';
+            },
+            whoami() {
+                return 'Nerd.';
+            },
+            ls() {
+                return 'interests.txt  contacts.txt  drone_project/  half-finished-side-projects/  .secrets';
+            },
+            uname() {
+                return 'bigliboo GNU/Linux 42.0.0 #1 SMP PREEMPT Fri Apr 17 00:00:00 IST 2026 x86_64 GNU/Linux';
+            },
+            pwd() {
+                return '/home/shiv/internet/portfolio';
+            },
+            clear() {
+                document.getElementById('history').innerHTML = '';
+                return null;
+            },
+            './see_what_I_like'() {
+                return 'Things I love:\n  - Open source\n  - Unmanned systems\n  - Science\n  - Operating systems\n  - Cloud tech\n  - Engineering';
+            },
+            sudo(args) {
+                if (!args.length)
+                    return 'sudo: Nuking this machine... just kidding. Were you expecting something to happen?';
+                if (args[0] === 'rm' && args.includes('-rf'))
+                    return 'sudo rm -rf: lmao. nice try. this is a portfolio, not your homelab.';
+                return '[sudo] password for shiv: \n...\nnice try. root access to a webpage? adorable.';
+            },
+            poweroff() {
+                return 'Broadcast message from shiv@bigliboo:\nThe system is going down for poweroff NOW!\n\n...\n\njk. I\'m a webpage. I live forever.';
+            },
+            reboot() {
+                return 'Broadcast message from shiv@bigliboo:\nThe system is going down for reboot NOW!\n\n...\n\nstill here. webpages don\'t reboot. try Ctrl+F5 if you\'re desperate.';
+            },
+            echo(args) {
+                return args.length ? args.join(' ') : '';
+            },
+            cat(args) {
+                if (!args.length)
+                    return 'cat: give me a filename. i\'m not psychic.\ntip: try  cat interests.txt  or  cat contacts.txt';
+                const f = args[0];
+                if (f === 'interests.txt')
+                    return 'Open source, Unmanned systems, Science, Operating systems, Cloud tech, Engineering';
+                if (f === 'contacts.txt')
+                    return 'Email:    shivtyagi3015@gmail.com\nLinkedIn: linkedin.com/in/shiv-tyagi\nGitHub:   github.com/shiv-tyagi';
+                if (f === '.secrets')
+                    return 'cat: .secrets: Permission denied  (bold move though)';
+                return 'cat: ' + f + ': No such file or directory\nhint: ls first, maybe?';
+            },
+        };
 
-            const container = document.getElementById('content');
-            container.innerHTML += contentArray[index];
-
-            setTimeout(() => addContentWithDelay(index + 1), speed);
+        function runCommand(raw) {
+            const parts = raw.trim().split(/\s+/);
+            const cmd   = parts[0];
+            const args  = parts.slice(1);
+            if (!cmd) return null;
+            if (commands[cmd]) return commands[cmd](args);
+            return cmd + ': command not found\nthis is a portfolio, not bash. try \'help\' to see what actually works.';
         }
 
-        // Start adding content
-        addContentWithDelay(0);
+        const input      = document.getElementById('cmd-input');
+        const history    = document.getElementById('history');
+        const cmdHistory = [];
+        let histIdx = -1;
+
+        input.addEventListener('keydown', e => {
+            if (e.key === 'ArrowUp') {
+                if (histIdx < cmdHistory.length - 1) histIdx++;
+                input.value = cmdHistory[cmdHistory.length - 1 - histIdx] || '';
+                e.preventDefault();
+            } else if (e.key === 'ArrowDown') {
+                if (histIdx > 0) histIdx--;
+                else { histIdx = -1; input.value = ''; return; }
+                input.value = cmdHistory[cmdHistory.length - 1 - histIdx] || '';
+                e.preventDefault();
+            }
+        });
+
+        input.addEventListener('keypress', e => {
+            if (e.key !== 'Enter') return;
+            const raw = input.value;
+            input.value = '';
+            histIdx = -1;
+            if (raw.trim()) cmdHistory.push(raw.trim());
+
+            const echo = document.createElement('div');
+            echo.className = 'prompt-line';
+            echo.innerHTML = '<span class="prompt-prefix">shiv@bigliboo:~$&nbsp;</span><span>' + escHtml(raw) + '</span>';
+            history.appendChild(echo);
+
+            const result = runCommand(raw);
+            if (result !== null && result !== undefined) {
+                const out = document.createElement('div');
+                out.className = 'output';
+                out.style.whiteSpace = 'pre-wrap';
+                out.textContent = result;
+                history.appendChild(out);
+            }
+
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        function escHtml(s) {
+            return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
+        document.addEventListener('click', () => input.focus());
     </script>
 </body>
-
-
 </html>
