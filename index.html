@@ -168,18 +168,10 @@ $$/   $$/ $$/ $$/       $$$$$$/        $$$$$$$/ $$/  $$/  $$/        $$$$$$/  $$
         <div class="anim-element">
             <div class="prompt-line">
                 <span class="prompt-prefix">shiv@bigliboo:~$&nbsp;</span>
-                <span>./see_what_I_like</span>
+                <span>help</span>
             </div>
             <div class="output">
-                Things I love:
-                <ul>
-                    <li>Open source</li>
-                    <li>Unmanned systems</li>
-                    <li>Science</li>
-                    <li>Operating systems</li>
-                    <li>Cloud tech</li>
-                    <li>Engineering</li>
-                </ul>
+                Available commands: whoami, ls, cat, echo, sudo, poweroff, reboot, uname, pwd, clear, help
             </div>
         </div>
 
@@ -208,7 +200,7 @@ $$/   $$/ $$/ $$/       $$$$$$/        $$$$$$$/ $$/  $$/  $$/        $$$$$$/  $$
 
         const commands = {
             help() {
-                return 'Available commands: ./see_what_I_like, whoami, ls, cat, echo, sudo, poweroff, reboot, uname, pwd, clear, help';
+                return 'Available commands: whoami, ls, cat, echo, sudo, poweroff, reboot, uname, pwd, clear, help';
             },
             whoami() {
                 return 'Nerd.';
@@ -225,9 +217,6 @@ $$/   $$/ $$/ $$/       $$$$$$/        $$$$$$$/ $$/  $$/  $$/        $$$$$$/  $$
             clear() {
                 document.getElementById('history').innerHTML = '';
                 return null;
-            },
-            './see_what_I_like'() {
-                return 'Things I love:\n  - Open source\n  - Unmanned systems\n  - Science\n  - Operating systems\n  - Cloud tech\n  - Engineering';
             },
             sudo(args) {
                 if (!args.length)
@@ -250,7 +239,7 @@ $$/   $$/ $$/ $$/       $$$$$$/        $$$$$$$/ $$/  $$/  $$/        $$$$$$/  $$
                     return 'cat: give me a filename. i\'m not psychic.\ntip: try  cat interests.txt  or  cat contacts.txt';
                 const f = args[0];
                 if (f === 'interests.txt')
-                    return 'Open source, Unmanned systems, Science, Operating systems, Cloud tech, Engineering';
+                    return 'Things I love:\n  - Open source\n  - Unmanned systems\n  - Science\n  - Operating systems\n  - Cloud tech\n  - Engineering';
                 if (f === 'contacts.txt')
                     return 'Email:    shivtyagi3015@gmail.com\nLinkedIn: linkedin.com/in/shiv-tyagi\nGitHub:   github.com/shiv-tyagi';
                 if (f === '.secrets')
